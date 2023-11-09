@@ -13,6 +13,7 @@ interface events {
   service: string;
   unite: string;
   client_id: string;
+  color: string;
 }
 
 export default async function Home() {
@@ -31,12 +32,11 @@ export default async function Home() {
     unite: e.doctors._ref,
     assets: e.assets || [],
     client_id: e.client._ref,
+    color: e.color,
   }));
   const users: { fullName: string }[] = await client.fetch(
     "*[_type == 'client']{ fullName }"
   );
-  console.log("#####");
-  console.log(users);
 
   return (
     <main className="flex relative flex-col justify-center min-h-full py-12 sm:px-6 lg:px-8 bg-gray-100">

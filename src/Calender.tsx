@@ -24,6 +24,8 @@ interface events {
   event_id: string;
   service: string;
   unite: string;
+  client_id: string;
+  color: string;
 }
 
 const queryClient = new QueryClient();

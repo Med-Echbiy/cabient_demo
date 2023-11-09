@@ -13,6 +13,7 @@ export default interface state {
     type: string;
   };
   service: string;
+  color: string;
   assets?:
     | Blob[]
     | {

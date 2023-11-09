@@ -22,4 +22,5 @@ export interface reservation {
     _ref: string;
     _type: "reference";
   };
+  color: string;
 }

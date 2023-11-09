@@ -33,12 +33,25 @@ interface assets {
     _ref: string;
   };
 }
+const colors = [
+  "#ef4444",
+  "#fb923c",
+  "#a3e635",
+  "#2dd4bf",
+  "#c084fc",
+  "#f472b6",
+  "#3b82f6",
+  "#fde047",
+  "#22c55e",
+  "#22d3ee",
+];
 function DetailForm(props: props) {
   const [client, setClient] = useState(false);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]); // State to store image previews
   const [unite, setUnite] = useState<{ _id: string; fullName: string }[]>([]);
   const [error, setError] = useState("");
   const [assets, setAssets] = useState<assets[]>([]);
+  const [selectedColor, setSelectedColor] = useState(colors[0]);
   const { users } = useUserStore();
   useEffect(() => {
     if (props.data && props.data.length > 0) {
@@ -269,6 +282,23 @@ function DetailForm(props: props) {
             ))}
           </div>
         )}
+      </div>
+      <div className="grid grid-cols-10 items-center gap-3">
+        {colors.map((e) => (
+          <div
+            key={e}
+            onClick={() => {
+              setSelectedColor(e);
+              props.set(e, "color");
+            }}
+            className={`aspect-square rounded-md cursor-pointer ease-linear duration-300 transition-all  ${
+              selectedColor === e && " scale-110 "
+            }`}
+            style={{
+              backgroundColor: e,
+            }}
+          ></div>
+        ))}
       </div>
       <div className="mt-3 text-error">{error && error}</div>
     </>

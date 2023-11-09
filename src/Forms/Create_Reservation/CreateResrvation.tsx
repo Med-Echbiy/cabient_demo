@@ -54,6 +54,7 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
     },
     service: (event?.service as string) || "",
     assets: event?.assets || [],
+    color: event?.color || "#06b6d4",
   });
   const [client, setClient] = useState<client>({
     fullName: "",
@@ -133,6 +134,7 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
             service: state.service,
             assets: state.assets,
             clientId: state.clientId,
+            color: state.color,
           });
         })) as ProcessedEvent;
         scheduler.onConfirm(added_updated_event, "edit");
@@ -152,6 +154,7 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
           service: state.service,
           assets: state.assets,
           clientId: state.clientId,
+          color: state.color,
         });
       })) as ProcessedEvent;
 

@@ -55,6 +55,7 @@ export async function createAppointment(
         _type: "reference",
       },
       assets: assetRefs,
+      color: state.color,
     };
 
     await Client.create(doc, { autoGenerateArrayKeys: true }).then((done) =>
@@ -109,6 +110,7 @@ export async function updateAppointment(docId: string, state: state) {
         },
         assets: state.assets,
         title: state.client,
+        color: state.color,
       })
       .commit();
     console.log(res);

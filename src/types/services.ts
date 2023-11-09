@@ -8,4 +8,5 @@ export interface service {
   price: number;
   service_name: string;
   _id: string;
+  color: string;
 }
