@@ -285,15 +285,17 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
           >
             Annuler
           </button>
-          <button
-            onClick={() => deleteAppointment(scheduler.state.event_id.value)}
-            className="btn border-gray-500 flex items-center gap-3 capitalize rounded-full btn-outline btn-error"
-          >
-            <p>Supprimer</p>
-            <p>
-              <BsTrash />
-            </p>
-          </button>
+          {data?.length && (
+            <button
+              onClick={() => deleteAppointment(scheduler.state.event_id.value)}
+              className="btn border-gray-500 flex items-center gap-3 capitalize rounded-full btn-outline btn-error"
+            >
+              <p>Supprimer</p>
+              <p>
+                <BsTrash />
+              </p>
+            </button>
+          )}
           <button
             className="bg-primary btn btn-wide capitalize hover:bg-primary text-white rounded-full"
             onClick={handleSubmit}

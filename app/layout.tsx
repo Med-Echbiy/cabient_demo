@@ -5,9 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Messenger",
-  description:
-    "a messenger clone website using typescript nextjs and tailwindcss ",
+  title: "clinic",
+  description: "a clinic doctor managment system ",
 };
 
 export default function RootLayout({
@@ -17,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="corporate">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="flex  min-h-screen ">
+          <div className="flex-grow">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }

@@ -69,7 +69,7 @@ function Calender({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex gap-y-3 flex-col">
+      <div className="flex gap-y-3 flex-col w-full pr-2">
         <div className="flex items-center">
           <button></button>
         </div>

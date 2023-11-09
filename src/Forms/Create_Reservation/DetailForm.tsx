@@ -44,7 +44,18 @@ const colors = [
   "#fde047",
   "#22c55e",
   "#22d3ee",
+  "#f87171",
+  "#f6e05e",
+  "#84d9f7",
+  "#e879f9",
+  "#10b981",
+  "#48bb78",
+  "#93c5fd",
+  "#93a3e6",
+  "#fbbf24",
+  "#f97316",
 ];
+
 function DetailForm(props: props) {
   const [client, setClient] = useState(false);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]); // State to store image previews
@@ -283,7 +294,7 @@ function DetailForm(props: props) {
           </div>
         )}
       </div>
-      <div className="grid grid-cols-10 items-center gap-3">
+      <div className="flex items-center gap-3">
         {colors.map((e) => (
           <div
             key={e}
@@ -291,7 +302,7 @@ function DetailForm(props: props) {
               setSelectedColor(e);
               props.set(e, "color");
             }}
-            className={`aspect-square rounded-md cursor-pointer ease-linear duration-300 transition-all  ${
+            className={`aspect-square flex-grow rounded-md cursor-pointer ease-linear duration-300 transition-all  ${
               selectedColor === e && " scale-110 "
             }`}
             style={{

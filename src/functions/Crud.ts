@@ -61,7 +61,7 @@ export async function createAppointment(
     await Client.create(doc, { autoGenerateArrayKeys: true }).then((done) =>
       console.log(done)
     );
-    window.location.reload();
+    // window.location.reload();
     return true;
   } catch (error) {
     console.log(error);

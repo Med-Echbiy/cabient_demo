@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rs__event__item {
+  width: 100% !important;
+  transform: translateY(-2px);
+}
