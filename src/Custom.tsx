@@ -16,6 +16,7 @@ const CustomEditor = ({ scheduler, service }: CustomEditorProps) => {
   const [editeMode, setEditeMode] = useState<boolean>(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [startEditing, setStartEdite] = useState(false);
   const fetchData = async () => {
     setLoading(true);
     const res = await client.fetch(
@@ -41,8 +42,21 @@ const CustomEditor = ({ scheduler, service }: CustomEditorProps) => {
       setEditeMode(true);
     }
   }, [scheduler.edited?.unite]);
+  const handelstartEditing = () => {
+    setStartEdite((pre) => !pre);
+  };
   if (loading) {
     return <UISkeleton />;
+  }
+
+  if (editeMode && !startEditing) {
+    return (
+      <EditeReservation
+        set={handelstartEditing}
+        services={service}
+        scheduler={scheduler}
+      />
+    );
   }
 
   return (

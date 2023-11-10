@@ -14,13 +14,13 @@ export default interface state {
   };
   service: string;
   color: string;
-  assets?:
-    | Blob[]
-    | {
-        _key: string;
-        _type: "image";
-        asset: { _type: "reference"; _ref: string };
-      }[];
+  assets?: // | Blob[]
+  {
+    _key: string;
+    _type: "image";
+    asset: { _type: "reference"; _ref: string };
+  }[];
+  assetsBlob: Blob[];
 }
 
 export interface client {

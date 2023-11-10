@@ -9,32 +9,7 @@ export async function createAppointment(
   id: string
 ) {
   try {
-    const assetRefs: {
-      _key: string;
-      _type: "image";
-      asset: {
-        _type: "reference";
-        _ref: string;
-      };
-    }[] = [];
-
-    if (state.assets && state.assets.length > 0) {
-      for (const assetBlob of state.assets) {
-        const asset = await Client.assets.upload("image", assetBlob as Blob, {
-          contentType: "image/*",
-          filename: nanoid(10),
-        });
-
-        assetRefs.push({
-          _key: nanoid(20),
-          _type: "image",
-          asset: {
-            _type: "reference",
-            _ref: asset._id,
-          },
-        });
-      }
-    }
+    const assetRefs = (await addAsset(state)) || [];
     const doc: reservation = {
       _id: `reservation_${id}`,
       event_id: `reservation_${id}`,
@@ -87,7 +62,7 @@ export async function updateAppointment(docId: string, state: state) {
   //update
 
   try {
-    console.log(state);
+    const assetRefs = (await addAsset(state)) || [];
     const getId = await Client.fetch(
       `*[_type == 'client' && fullName == '${state.client}' ][0]{_id}`
     );
@@ -108,12 +83,45 @@ export async function updateAppointment(docId: string, state: state) {
           _ref: state.unite,
           _type: "reference",
         },
-        assets: state.assets,
+        assets: assetRefs,
         title: state.client,
         color: state.color,
       })
       .commit();
     console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function addAsset(state: state) {
+  const assetRefs: {
+    _key: string;
+    _type: "image";
+    asset: {
+      _type: "reference";
+      _ref: string;
+    };
+  }[] = state.assets || [];
+  try {
+    if (state.assetsBlob && state.assetsBlob.length > 0) {
+      for (const assetBlob of state.assetsBlob) {
+        const asset = await Client.assets.upload("image", assetBlob as Blob, {
+          contentType: "image/*",
+          filename: nanoid(10),
+        });
+
+        assetRefs.push({
+          _key: nanoid(20),
+          _type: "image",
+          asset: {
+            _type: "reference",
+            _ref: asset._id,
+          },
+        });
+      }
+    }
+    return assetRefs;
   } catch (error) {
     console.log(error);
   }

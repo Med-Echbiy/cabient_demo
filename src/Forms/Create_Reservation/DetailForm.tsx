@@ -86,7 +86,7 @@ function DetailForm(props: props) {
     }
 
     setImagePreviews(previewUrls);
-    props.set(files, "assets");
+    props.set(files, "assetsBlob");
   }
   async function handelServiceChange(e: any) {
     setUnite([]);
@@ -245,7 +245,7 @@ function DetailForm(props: props) {
         </div>
       </div>
       <div>
-        <div className="grid my-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center gap-3">
+        <div className="grid my-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3">
           {props.data &&
             props.data.length > 0 &&
             assets.map((e, i) => (

@@ -23,7 +23,7 @@ import ClientForm from "./ClientForm";
 import DetailForm from "./DetailForm";
 import { service } from "@/src/types/services";
 import state, { client } from "@/src/types/state";
-import { BsTrash } from "react-icons/bs";
+import { BsPencil, BsTrash } from "react-icons/bs";
 
 interface props {
   scheduler: SchedulerHelpers;
@@ -55,6 +55,7 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
     service: (event?.service as string) || "",
     assets: event?.assets || [],
     color: event?.color || "#06b6d4",
+    assetsBlob: [],
   });
   const [client, setClient] = useState<client>({
     fullName: "",
@@ -123,7 +124,7 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
       handleChangeDetail(clientId, "clientId");
       /**Simulate remote data saving */
       if (editeMod) {
-        updateAppointment(scheduler.state.event_id.value, state);
+        await updateAppointment(scheduler.state.event_id.value, state);
         const added_updated_event = (await new Promise((res) => {
           res({
             event_id: event?.event_id || `reservation_${id}`,
@@ -139,6 +140,7 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
         })) as ProcessedEvent;
         scheduler.onConfirm(added_updated_event, "edit");
         toast.dismiss();
+        toast.success("Terminé !");
         scheduler.close();
         return;
       }
@@ -285,17 +287,7 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
           >
             Annuler
           </button>
-          {data?.length && (
-            <button
-              onClick={() => deleteAppointment(scheduler.state.event_id.value)}
-              className="btn border-gray-500 flex items-center gap-3 capitalize rounded-full btn-outline btn-error"
-            >
-              <p>Supprimer</p>
-              <p>
-                <BsTrash />
-              </p>
-            </button>
-          )}
+   
           <button
             className="bg-primary btn btn-wide capitalize hover:bg-primary text-white rounded-full"
             onClick={handleSubmit}

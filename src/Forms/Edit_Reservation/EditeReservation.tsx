@@ -5,16 +5,19 @@ import {
 } from "@aldabil/react-scheduler/types";
 import { DialogActions } from "@mui/material";
 import React, { Suspense, useState } from "react";
-import { BsPencil } from "react-icons/bs";
+import { BsPencil, BsTrash } from "react-icons/bs";
 import EditDetail from "./EditDetail";
 import state from "@/src/types/state";
+import { deleteAppointment } from "@/src/functions/Crud";
+import toast from "react-hot-toast";
 
 interface props {
   services: service[];
   scheduler: SchedulerHelpers;
+  set: () => void;
 }
 
-function EditeReservation({ scheduler, services }: props) {
+function EditeReservation({ scheduler, services, set }: props) {
   const [error, setError] = useState("");
   const [component, SetComponent] = useState<"detail" | "client">("detail");
   // fc
@@ -82,11 +85,38 @@ function EditeReservation({ scheduler, services }: props) {
             >
               Annuler
             </button>
+
+            <button
+              onClick={async () => {
+                toast.loading("wait to be deleted !");
+                await deleteAppointment(scheduler.state.event_id.value);
+                toast.dismiss();
+                toast.success("supprime");
+                scheduler.close();
+              }}
+              className="btn border-gray-500 flex items-center gap-3 capitalize rounded-full btn-outline btn-error"
+            >
+              <p>Supprimer</p>
+              <p>
+                <BsTrash />
+              </p>
+            </button>
+
+            <button
+              onClick={() => set()}
+              className="btn border-gray-500 flex items-center gap-3 capitalize rounded-full bg-purple-500 text-white hover:bg-purple-700"
+            >
+              <p>Modifier</p>
+              <p>
+                <BsPencil />
+              </p>
+            </button>
+
             <button
               className="bg-primary btn btn-wide flex items-center gap-3 capitalize hover:bg-primary text-white rounded-full"
               onClick={handelSubmit}
             >
-              Modifier
+              Mise a joure
               <BsPencil />
             </button>
           </DialogActions>

@@ -50,14 +50,9 @@ function Calender({
       const loading = toast.loading("loading...");
       const res = await client.delete(`${e}`);
       toast.dismiss(loading);
-      console.log(res.results);
-      if (res.results) {
-        toast.error("something went wrong");
-        // Handle HTTP error here (e.g., log or throw an error)
-      } else {
-        // Request was successful, handle the response here
-        toast.success("Delete successful");
-      }
+      console.log(res);
+      // Request was successful, handle the response here
+      toast.success(" successful");
 
       return e;
     } catch (error) {
