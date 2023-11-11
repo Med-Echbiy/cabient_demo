@@ -33,8 +33,11 @@ function EditDetail(props: props) {
       [name]: value,
     }));
   };
-  const calculateDuration = (startDate, endDate) => {
-    const diffInMs = endDate - startDate;
+  const calculateDuration = (
+    startDate: number | Date,
+    endDate: number | Date
+  ) => {
+    const diffInMs = (endDate as number) - (startDate as number);
     const hours = Math.floor(diffInMs / (1000 * 60 * 60));
     const minutes = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
 
