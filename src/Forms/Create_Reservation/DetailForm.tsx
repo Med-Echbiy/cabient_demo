@@ -122,7 +122,7 @@ function DetailForm(props: props) {
       <div className="grid grid-cols-2 items-center justify-between">
         <p className="label text-xl">Client</p>
         <div className="inputs flex items-center gap-4">
-          <div className=" flex-grow relative px-3">
+          <div className=" capitalize flex-grow relative px-3">
             <Autocomplete
               fullWidth
               onChange={(event: any, newValue: string | null) =>
@@ -142,8 +142,8 @@ function DetailForm(props: props) {
               onClick={() => props.set("", "component")}
               className="btn flex items-center rounded-full capitalize border-gray-500 bg-white text-black btn-outline hover:bg-white hover:text-black  btn-md"
             >
-              <span className="text-2xl">{!client ? "+" : "-"}</span>
-              <span className="">{!client ? "Ajouter" : "retirer"}</span>
+              <span className="text-2xl">+</span>
+              <span className="">Ajouter</span>
             </button>
           )}
         </div>
@@ -168,7 +168,7 @@ function DetailForm(props: props) {
                 </MenuItem>
                 {props.services.map((e, i) => (
                   <MenuItem key={e._id + i} value={e._id}>
-                    <div className="flex items-center w-full gap-3">
+                    <div className="flex capitalize items-center w-full gap-3">
                       <img
                         className="w-[60px] aspect-square object-cover"
                         src={`${urlForImage(e.image)}`}
@@ -209,7 +209,11 @@ function DetailForm(props: props) {
                 </MenuItem>
                 {unite.length > 0 &&
                   unite.map((e, i) => (
-                    <MenuItem key={e._id + i} value={e._id}>
+                    <MenuItem
+                      className=" capitalize"
+                      key={e._id + i}
+                      value={e._id}
+                    >
                       {e.fullName}
                     </MenuItem>
                   ))}

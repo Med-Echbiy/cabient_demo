@@ -52,6 +52,8 @@ export async function createClient(client: typeClient) {
       ...client,
       fullName: client.fullName.toLocaleLowerCase(),
       phone: +`212${client.phone}`,
+      adress: client.adress,
+      city: client.city,
     });
     return res;
   } catch (error) {

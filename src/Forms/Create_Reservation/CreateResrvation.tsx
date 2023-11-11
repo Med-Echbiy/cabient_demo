@@ -285,9 +285,9 @@ function CreateResrvation({ scheduler, service, editeMod, data }: props) {
             className="btn border-gray-500 capitalize rounded-full btn-outline"
             onClick={scheduler.close}
           >
-            Annuler
+            Annuler Réservation
           </button>
-   
+
           <button
             className="bg-primary btn btn-wide capitalize hover:bg-primary text-white rounded-full"
             onClick={handleSubmit}

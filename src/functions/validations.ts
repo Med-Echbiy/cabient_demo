@@ -46,13 +46,13 @@ export async function submitValidation(state: state) {
   const durationHours = endHours - startHours;
   const durationMinutes = endMinutes - startMinutes;
 
-  // Check if the duration is less than 1 hour
-  if (durationHours < 1 && durationHours === 0 && durationMinutes < 60) {
-    return {
-      approved: false,
-      msg: "La durée de l'heure de fin ne peut pas être inférieure à 1 heure.",
-    };
-  }
+  // // Check if the duration is less than 1 hour
+  // if (durationHours === 0 && durationMinutes < 60) {
+  //   return {
+  //     approved: false,
+  //     msg: "La durée de l'heure de fin ne peut pas être inférieure à 1 heure.",
+  //   };
+  // }
 
   return { approved: true, msg: "Tout est en ordre!" };
 }

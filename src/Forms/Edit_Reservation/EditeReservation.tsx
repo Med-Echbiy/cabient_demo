@@ -18,8 +18,9 @@ interface props {
 }
 
 function EditeReservation({ scheduler, services, set }: props) {
+  const colorBg = `bg-${scheduler.edited?.color?.substring(1)}`;
   const [error, setError] = useState("");
-  const [component, SetComponent] = useState<"detail" | "client">("detail");
+  // const [component, SetComponent] = useState<"detail" | "client">("detail");
   // fc
   async function handelSubmit() {}
   return (
@@ -28,7 +29,7 @@ function EditeReservation({ scheduler, services, set }: props) {
         <section>
           <div className="flex items-center justify-between">
             <div className="operation flex items-center gap-5">
-              <p className="text-xl font-semibold">Edite</p>
+              <p className="text-xl font-semibold">Edite Rendez-Vous</p>
               {/* <button className="btn btn-sm rounded-full capitalize btn-outline border-gray-500">
                 Gréer note
               </button> */}
@@ -37,35 +38,22 @@ function EditeReservation({ scheduler, services, set }: props) {
               <DialogActions>
                 <button
                   onClick={() => scheduler.close()}
-                  className="btn btn-circle p-1 bg-white hover:bg-white"
+                  className="btn btn-circle btn-outline p-1 btn-error"
                 >
                   x
                 </button>
               </DialogActions>
             </div>
           </div>
-          <div className="divider before:bg-primary after:bg-primary my-0.5"></div>
+          <div
+            className={`divider before:bg-black after:bg-black my-0.5`}
+          ></div>
         </section>
-        <div className="tab-switcher rounded-full grid border border-solid grid-cols-2">
+        <div className="tab-switcher rounded-full flex  border border-solid ">
           <button
-            onClick={() => SetComponent("detail")}
-            className={`btn no-animation ${
-              component === "detail"
-                ? "bg-blue-50 hover:bg-blue-50"
-                : "bg-white hover:bg-white border-none"
-            } capitalize  rounded-full`}
+            className={`btn flex-grow no-animation text-white ${`${colorBg}`} capitalize  rounded-full`}
           >
-            Détail
-          </button>
-          <button
-            onClick={() => SetComponent("client")}
-            className={`btn ${
-              component !== "client"
-                ? "bg-white hover:bg-white border-none"
-                : "bg-blue-50 hover:bg-blue-50"
-            }  no-animation capitalize  outline-none  rounded-full`}
-          >
-            Client
+            Résumé du rendez-vous
           </button>
         </div>
         {/* content */}

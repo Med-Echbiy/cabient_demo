@@ -80,6 +80,44 @@ function Calender({
             height={700}
             view={view}
             hourFormat="24"
+            eventRenderer={({ event, ...props }) => {
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    height: "100%",
+                    backgroundColor: event.color,
+                    alignItems: "center",
+                    padding: "7px",
+                  }}
+                  {...props}
+                >
+                  <div>{event.title}</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      fontSize: "10px",
+                    }}
+                  >
+                    <div>
+                      {event.start.toLocaleTimeString("it-IT", {
+                        timeStyle: "short",
+                      })}
+                    </div>
+                    <span>-</span>
+                    <div>
+                      {event.end.toLocaleTimeString("it-IT", {
+                        timeStyle: "short",
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            }}
             day={{
               startHour: 9,
               endHour: 19,

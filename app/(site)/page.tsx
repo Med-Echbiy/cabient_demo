@@ -56,8 +56,8 @@ export default async function Home() {
             </ClientWrapper>
           </div>
           <div className="mx-auto w-full flex  flex-grow flex-col gap-y-4 pt-3">
-            <h1 className="text-3xl flex items-center gap-3 p-4  capitalize">
-              <p>calendrier de rendez-vous</p>
+            <h1 className="text-3xl text-blue-900  flex items-center gap-3 p-4  capitalize">
+              <p className="">calendrier de rendez-vous</p>
               <p>
                 <BsFillCalendar2DateFill size={24} />
               </p>

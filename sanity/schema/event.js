@@ -87,7 +87,16 @@ const event = {
       // },
       description: ".",
     },
+    {
+      name: "paid",
+      title: "Payé",
+      type: "boolean",
+      description: "Indique si la réservation a été payée ou non.",
+    },
   ],
+  initialValue: {
+    paid: false,
+  },
 };
 
 export default event;

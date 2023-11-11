@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="corporate">
       <body className={roboto.className}>
-        <div className="flex min-h-screen ">
+        <div className="flex min-h-screen">
           <div className="flex-grow">{children}</div>
         </div>
       </body>
